@@ -1,0 +1,36 @@
+Awesome! ✅ File 1 complete.
+
+## Now let's add File 2: package.json
+
+1. Click **"Add file"** → **"Create new file"** again
+2. Name it: `package.json`
+3. Copy and paste this code:
+
+```json
+{
+  "name": "screenhound-backend",
+  "version": "1.0.0",
+  "description": "Screenhound SMS/MMS webhook backend for Twilio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["twilio", "sms", "mms", "webhook"],
+  "author": "Screenhound",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "@supabase/supabase-js": "^2.39.0",
+    "multer": "^1.4.5-lts.1",
+    "axios": "^1.6.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+```
+
+4. Click **"Commit changes"**
+
+Let me know when that's done!
