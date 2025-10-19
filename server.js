@@ -1,6 +1,3 @@
-Copy **everything** from the `screenhound-backend` artifact I created earlier. Here it is again - copy this entire code block:
-
-```javascript
 // Screenhound Backend - Twilio Webhook + API
 // This receives SMS/MMS from Twilio and stores submissions
 
@@ -250,6 +247,3 @@ app.listen(PORT, () => {
   console.log(`Screenhound backend running on port ${PORT}`);
   console.log(`Twilio webhook: http://your-domain.com/webhook/twilio`);
 });
-```
-
-Paste all of that into the file, then scroll down and click **"Commit changes"**.
