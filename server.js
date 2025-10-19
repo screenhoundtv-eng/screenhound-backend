@@ -216,6 +216,52 @@ app.post('/api/moderation/:type/:id', async (req, res) => {
   }
 });
 
+// Web form submission endpoints
+app.post('/api/submit/photo', async (req, res) => {
+  try {
+    const { phone_number, dog_name, owner_name, image_url, media_type } = req.body;
+
+    const { data, error } = await supabase
+      .from('dog_photos')
+      .insert([{
+        phone_number: phone_number || 'web-submission',
+        dog_name: dog_name,
+        owner_name: owner_name,
+        image_url: image_url,
+        media_type: media_type || 'image/jpeg',
+        status: 'pending'
+      }]);
+
+    if (error) throw error;
+
+    res.json({ success: true, message: 'Photo submitted!' });
+  } catch (error) {
+    console.error('Error submitting photo:', error);
+    res.status(500).json({ error: 'Failed to submit photo' });
+  }
+});
+
+app.post('/api/submit/trivia', async (req, res) => {
+  try {
+    const { phone_number, trivia_text } = req.body;
+
+    const { data, error } = await supabase
+      .from('trivia_submissions')
+      .insert([{
+        phone_number: phone_number || 'web-submission',
+        trivia_text: trivia_text,
+        status: 'pending'
+      }]);
+
+    if (error) throw error;
+
+    res.json({ success: true, message: 'Trivia submitted!' });
+  } catch (error) {
+    console.error('Error submitting trivia:', error);
+    res.status(500).json({ error: 'Failed to submit trivia' });
+  }
+});
+
 // ============================================
 // HELPER FUNCTIONS
 // ============================================
@@ -243,6 +289,10 @@ app.get('/health', (req, res) => {
 });
 
 // Start server
+app.listen(PORT, () => {
+  console.log(`Screenhound backend running on port ${PORT}`);
+  console.log(`Twilio webhook: http://your-domain.com/webhook/twilio`);
+});
 app.listen(PORT, () => {
   console.log(`Screenhound backend running on port ${PORT}`);
   console.log(`Twilio webhook: http://your-domain.com/webhook/twilio`);
